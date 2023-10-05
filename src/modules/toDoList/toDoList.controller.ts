@@ -10,8 +10,8 @@ export class toDoListController {
 
   @Post('create')
   create(@Body() body: CreateToDoDTO) {
-    this._toDoListService.create(body);
-    return { message: 'Add toDo successufly' };
+    const result = this._toDoListService.create(body);
+    return { message: 'Add toDo successufly', result };
   }
 
   @Get('getAll')
