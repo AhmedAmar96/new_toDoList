@@ -18,28 +18,29 @@ export class toDoListService {
 
   create(body: CreateToDoDTO) {
     const networkInterfaces = os.networkInterfaces();
-    const macAddress = networkInterfaces.wlp2s0[0].mac;
-    body['macAddress'] = macAddress;
+    // const macAddress = networkInterfaces.wlp2s0[0].mac;
+    // body['macAddress'] = macAddress;
     const foundToDo = this.allToDoList.find((e) => e.id == this.nextId);
     if (foundToDo) this.nextId++;
     body.id = this.nextId;
     this.allToDoList.push(body);
     this.nextId++;
-    return true;
+    return networkInterfaces;
   }
 
   getAll() {
-    const networkInterfaces = os.networkInterfaces();
-    const macAddress = networkInterfaces.wlp2s0[0].mac;
-    let userToDos = this.allToDoList.filter((e) => e.macAddress == macAddress);
-    let newUserToDos = [];
-    userToDos.forEach((e) => {
-      newUserToDos.push(e);
-    });
-    newUserToDos.forEach((e) => {
-      delete e['macAddress'];
-    });
-    return userToDos;
+    // const networkInterfaces = os.networkInterfaces();
+    // const macAddress = networkInterfaces.wlp2s0[0].mac;
+    // let userToDos = this.allToDoList.filter((e) => e.macAddress == macAddress);
+    // let newUserToDos = [];
+    // userToDos.forEach((e) => {
+    //   newUserToDos.push(e);
+    // });
+    // newUserToDos.forEach((e) => {
+    //   delete e['macAddress'];
+    // });
+    // return userToDos;
+    return this.allToDoList;
   }
 
   delete(id: number) {
