@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateToDoDTO } from './../../dtos/create-toDo.dto';
 import * as os from 'os';
-import { CreateToDoDTO } from 'src/dtos/create-toDo.dto';
 
 @Injectable()
 export class toDoListService {
