@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateToDoDTO } from './../../dtos/create-toDo.dto';
 import * as os from 'os';
+import { CreateToDoDTO } from 'src/dtos/create-toDo.dto';
 
 @Injectable()
 export class toDoListService {
@@ -17,7 +17,7 @@ export class toDoListService {
   private nextId: number = 1;
 
   create(body: CreateToDoDTO) {
-    const networkInterfaces = os.networkInterfaces();
+    // const networkInterfaces = os.networkInterfaces();
     // const macAddress = networkInterfaces.wlp2s0[0].mac;
     // body['macAddress'] = macAddress;
     const foundToDo = this.allToDoList.find((e) => e.id == this.nextId);
@@ -25,7 +25,7 @@ export class toDoListService {
     body.id = this.nextId;
     this.allToDoList.push(body);
     this.nextId++;
-    return networkInterfaces;
+    return true;
   }
 
   getAll() {

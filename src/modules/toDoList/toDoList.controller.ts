@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { toDoListService } from './toDoList.service';
-import { CreateToDoDTO } from './../../dtos/create-toDo.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { CreateToDoDTO } from 'src/dtos/create-toDo.dto';
 
 @Controller('toDoList')
 @ApiTags('toDoList')
@@ -11,7 +11,7 @@ export class toDoListController {
   @Post('create')
   create(@Body() body: CreateToDoDTO) {
     const result = this._toDoListService.create(body);
-    return { message: 'Add toDo successufly', result };
+    return { message: 'Add toDo successufly' };
   }
 
   @Get('getAll')
