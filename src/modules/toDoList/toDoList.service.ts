@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import {
   CreateToDoDTO,
   CreateUserDTO,
@@ -47,20 +47,20 @@ export class toDoListService {
   //   return true;
   // }
 
-  // getAll() {
-  //   // const networkInterfaces = os.networkInterfaces();
-  //   // const macAddress = networkInterfaces.wlp2s0[0].mac;
-  //   // let userToDos = this.allToDoList.filter((e) => e.macAddress == macAddress);
-  //   // let newUserToDos = [];
-  //   // userToDos.forEach((e) => {
-  //   //   newUserToDos.push(e);
-  //   // });
-  //   // newUserToDos.forEach((e) => {
-  //   //   delete e['macAddress'];
-  //   // });
-  //   // return userToDos;
-  //   return this.allToDoList;
-  // }
+  getAll() {
+    // const networkInterfaces = os.networkInterfaces();
+    // const macAddress = networkInterfaces.wlp2s0[0].mac;
+    // let userToDos = this.allToDoList.filter((e) => e.macAddress == macAddress);
+    // let newUserToDos = [];
+    // userToDos.forEach((e) => {
+    //   newUserToDos.push(e);
+    // });
+    // newUserToDos.forEach((e) => {
+    //   delete e['macAddress'];
+    // });
+    // return userToDos;
+    return this.allUsers;
+  }
 
   // delete(id: number) {
   //   const foundToDo = this.allToDoList.find((e) => e.id == id);
@@ -73,8 +73,9 @@ export class toDoListService {
     // const networkInterfaces = os.networkInterfaces();
     // const macAddress = networkInterfaces.wlp2s0[0].mac;
     // body['macAddress'] = macAddress;
-    const foundUser = this.allUsers.find((e) => e.id == this.nextId);
-    if (foundUser) this.nextId++;
+    const foundUser = this.allUsers.find((e) => e.email == body.email);
+    if (foundUser) throw new BadRequestException('User Already Exists')
+    this.nextId++;
     body.id = this.nextId;
     this.allUsers.push(body);
     this.nextId++;

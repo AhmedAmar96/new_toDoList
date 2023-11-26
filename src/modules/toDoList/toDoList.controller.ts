@@ -18,11 +18,11 @@ export class toDoListController {
   //   return { message: 'Add toDo successufly' };
   // }
 
-  // @Get('getAll')
-  // getAll() {
-  //   const result = this._toDoListService.getAll();
-  //   return { message: 'Get toDo successufly', result };
-  // }
+  @Get('getAll')
+  getAll() {
+    const result = this._toDoListService.getAll();
+    return { message: 'Get toDo successufly', result };
+  }
 
   // @Delete('delete-one/:id')
   // delete(@Param('id') id: number) {
