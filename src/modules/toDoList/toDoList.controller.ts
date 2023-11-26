@@ -1,6 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { toDoListService } from './toDoList.service';
-import { CreateToDoDTO } from './../../dtos/create-toDo.dto';
+import {
+  CreateToDoDTO,
+  CreateUserDTO,
+  UserLoginDTO,
+} from './../../dtos/create-toDo.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('toDoList')
@@ -8,21 +12,33 @@ import { ApiTags } from '@nestjs/swagger';
 export class toDoListController {
   constructor(private readonly _toDoListService: toDoListService) {}
 
-  @Post('create')
-  create(@Body() body: CreateToDoDTO) {
-    const result = this._toDoListService.create(body);
-    return { message: 'Add toDo successufly' };
+  // @Post('create')
+  // create(@Body() body: CreateToDoDTO) {
+  //   const result = this._toDoListService.create(body);
+  //   return { message: 'Add toDo successufly' };
+  // }
+
+  // @Get('getAll')
+  // getAll() {
+  //   const result = this._toDoListService.getAll();
+  //   return { message: 'Get toDo successufly', result };
+  // }
+
+  // @Delete('delete-one/:id')
+  // delete(@Param('id') id: number) {
+  //   this._toDoListService.delete(id);
+  //   return { message: 'Delete toDo successufly' };
+  // }
+
+  @Post('signUp')
+  signUp(@Body() body: CreateUserDTO) {
+    const result = this._toDoListService.signUp(body);
+    return { message: 'SignUp successufly' };
   }
 
-  @Get('getAll')
-  getAll() {
-    const result = this._toDoListService.getAll();
-    return { message: 'Get toDo successufly', result };
-  }
-
-  @Delete('delete-one/:id')
-  delete(@Param('id') id: number) {
-    this._toDoListService.delete(id);
-    return { message: 'Delete toDo successufly' };
+  @Post('login')
+  login(@Body() body: UserLoginDTO) {
+    const result = this._toDoListService.login(body);
+    return { message: 'Login successufly', result };
   }
 }
