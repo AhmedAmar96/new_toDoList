@@ -9,7 +9,11 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );
-  app.enableCors();
+  app.enableCors({
+    origin: 'https://nestjs-todo-git-stage-ahmedamar96.vercel.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
   const config = new DocumentBuilder()
     .setTitle('Your API')
     .setDescription('API description')
